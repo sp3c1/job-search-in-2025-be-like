@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Relationship {
+  cause_concept_name: String!
+  effect_concept_name: String!
+}
+
+type Article {
+  uuid: String!
+  title: String!
+  abstract: String!
+  tags: [String!]!
+  relationships: [Relationship!]!
+
+  """es ranking (if applicable)"""
+  score: Float
+}
+
+type Query {
+  articles(
+    """from 2 - 50 charactes, trimmed to alphanumeric"""
+    keyword: String
+    pagination: Pagination! = {page: 1, size: 50}
+  ): [Article!]!
+}
+
+input Pagination {
+  page: Int! = 1
+  size: Int! = 50
+}
