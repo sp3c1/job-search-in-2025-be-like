@@ -1,0 +1,17 @@
+{
+  "monorepo": true,
+  "compilerOptions": {
+    "webpack": true
+  },
+  "projects": {
+    "sequencess": {
+      "type": "application",
+      "root": "apps/sequencess",
+      "entryFile": "main",
+      "sourceRoot": "apps/sequencess/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sequencess/tsconfig.app.json"
+      }
+    }
+  }
+}
