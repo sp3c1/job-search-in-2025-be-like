@@ -1,0 +1,18 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t)s$": [
+      "ts-jest",
+      {
+        "tsconfig": "./tsconfig.e2e.json"
+      }
+    ]
+  },
+  "moduleNameMapper": {
+    "^@huggg/models(|/.*)$": "<rootDir>/../../../libs/models/src/$1"
+  },
+  "globalTeardown": "./teardown.ts"
+}

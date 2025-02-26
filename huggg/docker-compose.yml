@@ -1,0 +1,19 @@
+services:
+  postgres:
+    container_name: postgres-huggg
+    image: postgres
+    ports:
+      - '5432:5432'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: huggg_pwd
+      POSTGRES_USER: postgres
+      POSTGRES_DB: huggg
+    volumes:
+      - ./docker-compose-db-init.sh:/docker-entrypoint-initdb.d/init-db.sh
+  redis:
+    container_name: redis-huggg
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
