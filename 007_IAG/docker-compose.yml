@@ -1,0 +1,17 @@
+services:
+  postgres:
+    container_name: postgres-aig
+    image: postgres
+    ports:
+      - "5232:5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: nvrmnd
+      POSTGRES_USER: nvrmnd
+      POSTGRES_DB: nvrmnd_dev
+  redis:
+    container_name: redis-aig
+    image: redis
+    restart: always
+    ports:
+      - 6279:6379
