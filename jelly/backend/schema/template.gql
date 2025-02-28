@@ -1,0 +1,147 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PUBSUB_QueueIngredientsPriceChange_TMPL {
+  changedAt: DateTime!
+  ingredientId: Int!
+  price: Float!
+  requestId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type PUBSUB_QueueAddedSupplier_TMPL {
+  requestId: String!
+  id: Int!
+  name: String!
+}
+
+type PUBSUB_QueueAddedIngredient_TMPL {
+  requestId: String!
+  id: Int!
+  name: String!
+}
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  role: UserRole!
+}
+
+enum UserRole {
+  Business
+  User
+  Admin
+  ApiKey
+  Unknown
+}
+
+type Reciepie {
+  id: Int!
+  name: String!
+  reciepeToIngredient: [ReciepieToIngredient!]!
+}
+
+type ReciepieToIngredient {
+  id: Int!
+  reciepeId: Int!
+  reciepe: Reciepie!
+  ingredientId: Int!
+  ingredient: Ingredient!
+  quantity: Int!
+}
+
+type Supplier {
+  id: Int!
+  name: String!
+  supplierToIngredient(pagination: Pagination! = {page: 1, size: 50}): [SupplierToIngredient!]!
+}
+
+input Pagination {
+  page: Int! = 1
+  size: Int! = 50
+}
+
+type SupplierToIngredient {
+  id: Int!
+  supplierId: Int!
+  supplier: Supplier!
+  ingredientId: Int!
+  ingredient: Ingredient!
+}
+
+type Ingredient {
+  id: Int!
+  name: String!
+  supplierToIngredient(pagination: Pagination!): [SupplierToIngredient!]!
+  reciepeToIngredient: [ReciepieToIngredient!]!
+  latestIngredientPrice: IngredientPrice!
+  ingredientPrices(pagination: Pagination! = {page: 1, size: 50}): [IngredientPrice!]!
+  suppliers(pagination: Pagination! = {page: 1, size: 50}): [SupplierToIngredient!]!
+}
+
+type IngredientPrice {
+  id: Int!
+  price: Float!
+  ingredientId: Int
+  ingredient: Ingredient
+  changedAt: DateTime!
+}
+
+"""Upload files"""
+scalar Upload
+
+type Query {
+  user(id: Int!): User!
+  ingredient(id: Int!): Ingredient!
+  ingredients(pagination: Pagination!): [Ingredient!]!
+  supplier(id: Int!): Supplier!
+  suppliers(pagination: Pagination! = {page: 1, size: 50}): [Supplier!]!
+  reciepe(id: Int!): Reciepie!
+  reciepes(pagination: Pagination!): [Reciepie!]!
+}
+
+type Mutation {
+  createUser(email: String!, name: String!): User!
+  ingredientUploadV1(file: Upload!): Boolean!
+  updatePrices(changes: [UpdatePrices!]!): Boolean!
+  jsonPricesUpload(file: Upload!): Boolean!
+  createReciepte(name: String!, ingredients: [IngredientsWithQuantity!]!): Reciepie!
+  editRecipeiIngredients(changes: [ArgsIngerdienReciepeInput!]!, id: Int!): Reciepie!
+  removeRecipeiIngredients(ingredientIds: [Int!]!, id: Int!): Reciepie!
+  addRecipeiIngredients(changes: [ArgsIngerdienReciepeInput!]!, id: Int!): [Reciepie!]!
+  editReciepieIngredients(id: Int!, name: String!): Reciepie!
+}
+
+input UpdatePrices {
+  ingredient_name: String!
+  price_changes: [PriceChange!]!
+}
+
+input PriceChange {
+  changed_at: DateTime!
+  price: Float!
+}
+
+input IngredientsWithQuantity {
+  ingredientId: Int!
+  quantity: Int!
+}
+
+input ArgsIngerdienReciepeInput {
+  ingredientId: Int!
+  quanty: Int!
+}
+
+type Subscription {
+  userChange(id: Int!): User
+  userCreated: User
+  trackIngredientPrice(id: Int!): PUBSUB_QueueIngredientsPriceChange_TMPL
+  trackIngredientCreation: PUBSUB_QueueAddedIngredient_TMPL
+  trackSupplierCreation: PUBSUB_QueueAddedSupplier_TMPL
+}

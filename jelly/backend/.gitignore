@@ -1,0 +1,61 @@
+# compiled output
+/dist
+/node_modules
+/**/node_modules
+/go/**/package-lock.json
+/go/**/bin/*
+/**/__debug_*.exe
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.ipynb_checkpoints
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# env files
+**/*.env
+**/*.env.migration
+**/.envrc
+
+./Dockerfile
+
+.token*.bat
+
+#Terraform
+**/.terraform/*
+!.infra/dot_envs/*
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+uploads/*

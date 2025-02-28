@@ -1,0 +1,54 @@
+{
+  "monorepo": true,
+  "compilerOptions": {
+    "webpack": true
+  },
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api/tsconfig.app.json"
+      }
+    },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json",
+        "webpack": false
+      }
+    },
+    "ingredients-csv": {
+      "type": "application",
+      "root": "apps/ingredients-csv",
+      "entryFile": "main",
+      "sourceRoot": "apps/ingredients-csv/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ingredients-csv/tsconfig.app.json"
+      }
+    },
+    "insert-ingredients": {
+      "type": "application",
+      "root": "apps/insert-ingredients",
+      "entryFile": "main",
+      "sourceRoot": "apps/insert-ingredients/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/insert-ingredients/tsconfig.app.json"
+      }
+    },
+    "price-update": {
+      "type": "application",
+      "root": "apps/price-update",
+      "entryFile": "main",
+      "sourceRoot": "apps/price-update/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/price-update/tsconfig.app.json"
+      }
+    }
+  }
+}
